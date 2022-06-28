@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go-experiment/helper"
 	"strings"
 )
 
@@ -22,7 +23,7 @@ func main() {
 		firstName, lastName, userTickets, email := getUserInput()
 
 		//Data Validation
-		isValidName, isValidEmail, isValidTicketNumber := validateUserInput(firstName, lastName, email, userTickets)
+		isValidName, isValidEmail, isValidTicketNumber := helper.ValidateUserInput(firstName, lastName, email, userTickets)
 
 		if isValidName && isValidEmail && isValidTicketNumber {
 

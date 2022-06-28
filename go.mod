@@ -1,3 +1,3 @@
-module github.com/iamanmolm/go-experiment
+module go-experiment
 
 go 1.17
