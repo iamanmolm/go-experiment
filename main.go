@@ -40,6 +40,11 @@ func main() {
 		for _, booking := range bookings {
 			bookedFirstNames = append(bookedFirstNames, strings.Fields(booking)[0])
 		}
-		fmt.Printf("These are our all the bookings:%v\n", bookedFirstNames)
+		fmt.Printf("The first name of all the bookings: %v\n", bookedFirstNames)
+
+		if remainingTickets == 0 {
+			fmt.Println("Tickets for our application is booked out. Come back in next slot")
+			break
+		}
 	}
 }
