@@ -3,13 +3,15 @@ package main
 import (
 	"fmt"
 	"go-experiment/helper"
-	"strings"
+	"strconv"
 )
 
 //Package Level Variables
 var applicationName = "Anmol"
 var remainingTickets uint = 50
-var bookings []string
+
+//List of maps
+var bookings = make([]map[string]string, 0)
 
 const applicationTickets = 50
 
@@ -59,7 +61,7 @@ func greetUsers() {
 func getFirstNames() []string {
 	bookedFirstNames := []string{}
 	for _, booking := range bookings {
-		bookedFirstNames = append(bookedFirstNames, strings.Fields(booking)[0])
+		bookedFirstNames = append(bookedFirstNames, booking["firstName"])
 	}
 	return bookedFirstNames
 }
@@ -83,7 +85,18 @@ func getUserInput() (string, string, uint, string) {
 
 func bookTicket(userTickets uint, firstName string, lastName string, email string) {
 	remainingTickets = remainingTickets - userTickets
-	bookings = append(bookings, firstName+" "+lastName)
+
+	//Create an empty map
+	var userData = make(map[string]string)
+
+	//Insert values into map
+	userData["firstName"] = firstName
+	userData["lastName"] = lastName
+	userData["email"] = email
+	userData["numberOfTickets"] = strconv.FormatUint(uint64(userTickets), 10)
+
+	//Append this map to bookings list
+	bookings = append(bookings, userData)
 
 	fmt.Printf("Thank you %v %v for booking %v tickets, you will receive a email confirmation on %v\n", firstName, lastName, userTickets, email)
 	fmt.Println("We have total of", applicationTickets, "tickets and", remainingTickets, "are still remaining")
